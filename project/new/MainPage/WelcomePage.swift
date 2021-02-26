@@ -42,11 +42,13 @@ struct WelcomePage: View {
                 .padding(.horizontal,5)
                 .padding(.top,100)
                 
+            
+                
                 Spacer()
                 HStack(spacing:10) {
-                    Text("C S A.T")
+                    Text("Movie App")
                         .foregroundColor(Color.white)
-                        .font(.system(size:100,weight: .regular, design: .rounded))
+                        .font(.system(size:75,weight: .regular, design: .rounded))
                         .offset(x:animateImagge ? 0 : -350)
                         .animation(.easeInOut(duration: 1.5))
                 }
@@ -57,22 +59,22 @@ struct WelcomePage: View {
                 Spacer()
                 //2button here
                 VStack{
-                    LargeButton(text: "Sign Up", textColor: .black, button: .white){
-                        withAnimation(){
-                            isSignUp.toggle()
-                        }
-                    }
-                    .fullScreenCover(isPresented: $isSignUp, content: {
-                        signUp(isSignUp: $isSignUp)
-                    })
-                    
-                    LargeButton(text: "Sign In", textColor: .black, button:Color.red.opacity(0.75)){
+                    LargeButton(text: "Sign In", textColor: .black, button: .white){
                         withAnimation(){
                             isSignIn.toggle()
                         }
                     }
                     .fullScreenCover(isPresented: $isSignIn, content: {
                         SignIn(isSignIn: $isSignIn)
+                    })
+                    
+                    LargeButton(text: "Sign Up", textColor: .black, button:Color.red.opacity(0.75)){
+                        withAnimation(){
+                            isSignUp.toggle()
+                        }
+                    }
+                    .fullScreenCover(isPresented: $isSignUp, content: {
+                        SignUp(isSignUp: $isSignUp)
                     })
                 }
                 .offset(y:animateImagge ? 0 : 400)

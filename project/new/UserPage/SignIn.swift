@@ -15,145 +15,165 @@ struct SignIn: View {
     @State private var password:String = ""
     
     @Binding var isSignIn:Bool
-  //  @Namespace var names
+    //  @Namespace var names
     var body: some View {
-            VStack {
-                VStack {
-                    Button(action:{
-                        //todo
-                        withAnimation(){
-                            isSignIn.toggle()
-                        }
-                    }){
-                        HStack {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.title)
-                                .foregroundColor(Color.black.opacity(0.5))
-                                .padding(.bottom,20)
-                            Spacer()
-                            
-                        }
+        VStack{
+            HStack {
+                Spacer()
+                Button(action:{
+                    withAnimation(){
+                        isSignIn.toggle()
                     }
-                    HStack{
-                        Text("Welcome!")
-                            .bold()
+                }){
+                    HStack {
+                        Image(systemName: "xmark.circle.fill")
                             .font(.title)
-                        Spacer()
-                    }
-                    HStack {
-                        VStack(alignment:.leading){
-                            Text("Sign In with Social to fill the form and continue")
-                                .padding(0)
-                                .font(.caption2)
-                                .foregroundColor(.gray)
-                                .padding(.top,10)
-                                .padding(.bottom,10)
-                            
-                            HStack(spacing:50)
-                            {
-                                Button(action: {
-                                        print("Sign up using Facebook Instead")})
-                                {
-                                    
-                                    Image("fb")
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
-                                    
-                                    
-                                }
-                                
-                                Button(action: {print("Sign up using google Instead")})
-                                {
-                                    
-                                    Image("google")
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
-                                }
-                            }
-                            .padding(.bottom,25)
+                            .foregroundColor(Color.black.opacity(0.5))
+                            .padding(.bottom,20)
                             .padding(.leading)
-                        }
+                        Spacer()
+                        
+                    }
+                }
+            }
+            Spacer()
+            
+            Logo()
+            
+            Text("Sign In")
+                .font(.title)
+                .bold()
+            
+            
+            Group{
+                VStack {
+                    HStack{
+                        Text("Email :")
+                            .foregroundColor(.black)
+                            .font(.headline)
                         Spacer()
                     }
-                    Divider()
-                        .background(Color.black)
-                
                     
-                    
-                    
-                    VStack {
-                        HStack {
-                            Image(systemName: "envelope")
-                                .font(.system(size:20))
-                            TextFieldWithLineBorder(text: $email, placeholder:  "email")
-                                .keyboardType(.emailAddress)
-                        }
-                        .padding()
-                        .frame(width: 370)
-                        .font(.body)
-                        
-                        HStack {
-                            Image(systemName: "lock")
-                                .font(.system(size:20))
-                                .foregroundColor(.secondary)
-                            SeruceFieldWithLineBorder(text: $password, placeholder: "Password")
-                        }
-                        .padding()
-                        .frame(width: 370)
-                        .font(.body)
-                    }
-                    
-                    Spacer()
+                    TextFieldWithLineBorder(text: $email,placeholder: "Enter Your Email")
+                        .keyboardType(.emailAddress)
                 }
-                .padding()
+                .padding(.horizontal)
                 
                 VStack {
-                    HStack {
-                        //if checked change to check image
-                        Button(action:{
-                            withAnimation(){
-                                check.toggle()
-                            }
-                        }){
-                            Image(systemName: check ? "checkmark.circle.fill"
-                                    : "circle")
-                                .font(.system(size: 20))
-                        }
-
-                        Text("Remember me next time")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                        
+                    HStack{
+                        Text("Password :")
+                            .foregroundColor(.black)
+                            .font(.headline)
                         Spacer()
-                        
                     }
-                    .padding(.leading,20)
                     
-                    //if no check change color and different function
-                    smallButton(text: "Sign In", textColor: .white, button: check ? Color("ButtonBlue") : Color.gray,image: check ? "arrow.forward" : ""){
-                        //check and return result
-             
-                    }
-                    .padding(.top,20)
-                    .frame(width:250,height: 50)
-                    
-                    //a sign up Button
+                    SeruceFieldWithLineBorder(text: $password, placeholder: "Enter Your Password")
+        
                 }
-            
-        }
-        .frame(width: 370)
-    
-    }
-    
-    
-    fileprivate func checkUserLogin(){
+                .padding(.horizontal)
 
-        
-        
+                HStack {
+                    Spacer()
+                    
+                    Button(action:{
+                        //TODO
+                        //GO TO FROGET PASSWORD
+                        
+                    }){
+                        Text("Forget Password?")
+                            .foregroundColor(.secondary)
+                            .font(.footnote)
+                    }
+
+                }
+                .padding(.horizontal)
+            }
+            .padding()
+            
+            Spacer()
+            
+            smallButton(text: "Sign In", textColor: .white, button: .black, image: ""){
+                
+            }
+            .padding(.horizontal,50)
+            
+            
+            Spacer()
+            
+            SocialLogo()
+            
+            
+            HStack{
+                Text("Don't have an accont?")
+                    .foregroundColor(.secondary)
+                Button(action:{
+                    //TODO:
+                    //GO TO SIGN UP PAGE
+                    //more
+                }){
+                    Text("Sign Up")
+                }
+            }
+            .font(.system(size: 14))
+            .padding()
+
+        }
     }
 }
 struct SignIn_Previews: PreviewProvider {
     static var previews: some View {
         SignIn(isSignIn: .constant(false))
+    }
+}
+
+struct Logo: View {
+    var body: some View {
+        VStack {
+            HStack {
+                Image(systemName: "circle.fill")
+                    .font(.caption2)
+                Image(systemName: "circle.fill")
+                    .font(.caption2)
+            }
+            Image(systemName: "mustache")
+        }
+        .font(.system(size:150))
+        .padding(.bottom)
+        .padding(.top)
+    }
+}
+
+struct SocialLogo: View {
+    var body: some View {
+        HStack {
+            Spacer()
+            CircleButton(IconName: "applelogo") {
+                // TODO:
+                // SIGN IN WITH APPLE ID
+            }
+            Spacer()
+            
+            CircleButton(IconName: "GoogleIcon",isSystemName: false) {
+                // TODO:
+                // SIGN IN WITH APPLE ID
+            }
+            
+            Spacer()
+            
+            CircleButton(IconName: "facebook",isSystemName: false) {
+                // TODO:
+                // SIGN IN WITH APPLE ID
+            }
+            
+            Spacer()
+            
+            CircleButton(IconName: "twitter",isSystemName: false) {
+                // TODO:
+                // SIGN IN WITH APPLE ID
+            }
+            
+            Spacer()
+            
+        }
     }
 }
