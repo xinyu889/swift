@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-
+import GoogleSignIn
+import Firebase
 
 struct SignIn: View {
     @State private var failed = false
@@ -177,6 +178,10 @@ struct SocialLogo: View {
             CircleButton(IconName: "GoogleIcon",isSystemName: false) {
                 // TODO:
                 // SIGN IN WITH APPLE ID
+                GIDSignIn.sharedInstance()?.presentingViewController = UIApplication.shared.windows.first?.rootViewController
+                
+                GIDSignIn.sharedInstance()?.signIn()
+                
             }
             
             Spacer()

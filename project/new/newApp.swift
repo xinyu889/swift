@@ -6,13 +6,18 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+import Firebase
 
 @main
 struct newApp: App {
+    //tell swiftUI use my AppDelegate
+    @UIApplicationDelegateAdaptor(AppDelegates.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WelcomePage()
+
         }
-            
     }
 }
