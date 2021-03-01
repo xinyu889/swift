@@ -104,7 +104,6 @@ struct CardScroll: View {
                         .frame(height:800)
         }
         .offset(y: -30)
-        
     }
 }
 struct ContentView: View {
