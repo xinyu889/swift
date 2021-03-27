@@ -49,12 +49,16 @@ let sectionData = [sectionData1,sectionData2,sectionData3]
 
  
  
-struct SectionView: View {
+struct SectionView: View
+{
     var section: Section
     
-    var body: some View {
-        VStack {
-            HStack(alignment: .top) {
+    var body: some View
+    {
+        VStack
+        {
+            HStack(alignment: .top)
+            {
                 Text(section.title)
                     .font(.system(size: 24, weight: .bold))
                     .frame(width: 160, alignment: .leading)
@@ -77,18 +81,22 @@ struct SectionView: View {
         .frame(width: 275, height: 570)
         .background(section.image)
         .cornerRadius(30)
-        .shadow(color: section.color.opacity(0.7), radius: 20, x: 0, y: 20)
+        .shadow(color: section.color.opacity(0.7), radius: 5, x: 0, y: 5)
     }
 }
  
 
 
  
-struct CardScroll: View {
-    var body: some View {
+struct CardScroll: View
+{
+    var body: some View
+    {
         
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 35) {
+        ScrollView(.horizontal, showsIndicators: false)
+        {
+            HStack(spacing: 35)
+            {
                             ForEach(sectionData) { item in
                                 GeometryReader { geometry in
                                     SectionView(section: item)
@@ -106,8 +114,10 @@ struct CardScroll: View {
         .offset(y: -30)
     }
 }
-struct ContentView: View {
-    var body: some View {
+struct CardsView: View
+{
+    var body: some View
+    {
         List{
             CardScroll()
         }
@@ -115,9 +125,11 @@ struct ContentView: View {
 }
  
  
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+struct Cards_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
+        CardsView()
             .preferredColorScheme(.dark)
     }
 }
